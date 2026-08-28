@@ -1,0 +1,31 @@
+OMBRE//GEEK — RAPPORT QA
+========================
+Version testée : 1.0.0
+Navigateur de test : Chromium 144 headless
+Résultat global : RÉUSSI
+
+VALIDATIONS AUTOMATIQUES
+------------------------
+[OK] 52 questions disponibles.
+[OK] Identifiants de questions uniques.
+[OK] Une illustration SVG valide pour chaque question.
+[OK] Une palette complète pour chaque illustration.
+[OK] Quatre choix uniques incluant toujours la bonne réponse.
+[OK] Six modes présents sur l’accueil.
+[OK] Partie rapide : démarrage, chrono et première manche.
+[OK] Silhouette noire avant la réponse.
+[OK] Révélation en couleur après la réponse.
+[OK] Bonne réponse automatiquement signalée.
+[OK] Retour correct / incorrect affiché.
+[OK] Menu pause et reprise.
+[OK] Collection de 52 cartes.
+[OK] Duel local configuré à quatre joueurs.
+[OK] Buzz du joueur 1 avec la touche A.
+[OK] Réponse après buzz et résultat de manche.
+[OK] Contre-la-montre global et enchaînement des manches.
+[OK] Mise en page mobile avec réponses sur une colonne.
+[OK] Version monofichier portable chargée sans dépendance externe.
+
+FICHIERS DE TEST
+----------------
+Les scripts et captures utilisés pendant la validation sont conservés dans le dossier de travail « tests » mais ne sont pas requis pour jouer.

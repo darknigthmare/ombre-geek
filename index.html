@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#070a12">
+  <meta name="description" content="OMBRE//GEEK — blind test visuel de silhouettes inspirées du jeu vidéo et de la culture geek.">
+  <title>OMBRE//GEEK — Blind Test de Silhouettes</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="src/styles.css">
+</head>
+<body>
+  <div class="ambient" aria-hidden="true">
+    <span class="orb orb-a"></span><span class="orb orb-b"></span><span class="grid"></span>
+  </div>
+
+  <div id="app" class="app-shell">
+    <header class="topbar">
+      <button class="brand-button" id="brand-home" aria-label="Retour à l’accueil">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span><strong>OMBRE</strong><em>//GEEK</em></span>
+      </button>
+      <div class="topbar-profile">
+        <span class="level-badge" id="profile-level">NIV. 1</span>
+        <div class="xp-track" aria-label="Progression d’expérience"><span id="profile-xp"></span></div>
+        <button class="icon-button" id="sound-toggle" aria-label="Activer ou couper les sons" title="Son">♪</button>
+        <button class="icon-button" id="fullscreen-toggle" aria-label="Plein écran" title="Plein écran">⛶</button>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <section class="screen active" id="home-screen" aria-labelledby="home-title">
+        <div class="home-hero panel">
+          <div class="hero-copy">
+            <p class="eyebrow">LE BLIND TEST VISUEL GEEK</p>
+            <h1 id="home-title">Reconnais-les<br><span>avant la lumière.</span></h1>
+            <p class="hero-lead">Personnages, monstres, armes, objets et consoles : une silhouette, quatre réponses, quelques secondes.</p>
+            <div class="hero-actions">
+              <button class="btn btn-primary btn-xl" id="quick-play">PARTIE RAPIDE <span>▶</span></button>
+              <button class="btn btn-ghost" data-nav="collection">MA COLLECTION</button>
+            </div>
+            <div class="profile-summary" aria-label="Résumé du profil">
+              <div><strong id="home-best">0</strong><span>meilleur score</span></div>
+              <div><strong id="home-unlocked">0/0</strong><span>silhouettes trouvées</span></div>
+              <div><strong id="home-accuracy">—</strong><span>précision globale</span></div>
+            </div>
+          </div>
+          <div class="hero-visual" aria-hidden="true">
+            <div class="spotlight"></div>
+            <div class="mystery-card">
+              <span class="mystery-label">SILHOUETTE #???</span>
+              <svg viewBox="0 0 400 400" role="img" aria-label="Silhouette mystérieuse">
+                <path d="M151 84 Q201 48 249 84 L263 139 L239 174 L163 174 L139 139Z"/>
+                <path d="M157 91 L130 38 Q168 52 184 79Z"/>
+                <path d="M245 91 L272 38 Q234 52 218 79Z"/>
+                <path d="M153 172 L249 172 L269 299 L133 299Z"/>
+                <path d="M144 183 Q108 207 102 251 L138 274 L167 227Z"/>
+                <path d="M258 183 Q294 207 300 251 L264 274 L235 227Z"/>
+                <path d="M146 293 L194 293 L190 350 L116 350 Q110 324 146 293Z"/>
+                <path d="M208 293 L256 293 Q292 324 286 350 L212 350Z"/>
+                <line x1="89" y1="286" x2="303" y2="96" stroke-width="13" stroke-linecap="round"/>
+              </svg>
+              <span class="scanline"></span>
+              <span class="question-mark">?</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-heading">
+          <div><p class="eyebrow">CHOISIS TON ÉPREUVE</p><h2>Modes de jeu</h2></div>
+          <button class="text-button" data-nav="stats">Voir les statistiques →</button>
+        </div>
+
+        <div class="mode-grid">
+          <button class="mode-card mode-arcade" data-mode="arcade">
+            <span class="mode-icon">◈</span><span class="mode-tag">CLASSIQUE</span>
+            <strong>Arcade</strong><small>10 à 30 silhouettes. Score, temps et combos.</small>
+            <em>1 JOUEUR</em>
+          </button>
+          <button class="mode-card mode-chrono" data-mode="chrono">
+            <span class="mode-icon">◷</span><span class="mode-tag">SOUS PRESSION</span>
+            <strong>Contre-la-montre</strong><small>Enchaîne un maximum de réponses avant la fin.</small>
+            <em>60–120 SECONDES</em>
+          </button>
+          <button class="mode-card mode-survival" data-mode="survival">
+            <span class="mode-icon">♥</span><span class="mode-tag">SANS FIN</span>
+            <strong>Survie</strong><small>Trois vies. Une difficulté qui grimpe sans prévenir.</small>
+            <em>RECORD PERSONNEL</em>
+          </button>
+          <button class="mode-card mode-duel" data-mode="duel">
+            <span class="mode-icon">⚡</span><span class="mode-tag">CANAPÉ</span>
+            <strong>Duel local</strong><small>De 2 à 4 joueurs, chacun avec sa touche de buzz.</small>
+            <em>MULTIJOUEUR LOCAL</em>
+          </button>
+          <button class="mode-card mode-daily" data-mode="daily">
+            <span class="mode-icon">◆</span><span class="mode-tag" id="daily-tag">DÉFI DU JOUR</span>
+            <strong>Défi quotidien</strong><small>Les mêmes 10 silhouettes pour tout le monde aujourd’hui.</small>
+            <em id="daily-status">NOUVEL ESSAI</em>
+          </button>
+          <button class="mode-card mode-training" data-mode="training">
+            <span class="mode-icon">◎</span><span class="mode-tag">SANS CHRONO</span>
+            <strong>Entraînement</strong><small>Observe, utilise les indices et complète ta collection.</small>
+            <em>MODE DÉTENTE</em>
+          </button>
+        </div>
+
+        <nav class="secondary-nav panel" aria-label="Autres sections">
+          <button data-nav="collection"><span>▦</span><strong>Collection</strong><small>Fiches et silhouettes débloquées</small></button>
+          <button data-nav="stats"><span>▥</span><strong>Statistiques</strong><small>Scores, précision et records</small></button>
+          <button data-nav="settings"><span>⚙</span><strong>Options</strong><small>Son, affichage et accessibilité</small></button>
+          <button data-nav="credits"><span>✦</span><strong>Crédits</strong><small>À propos du projet</small></button>
+        </nav>
+      </section>
+
+      <section class="screen" id="setup-screen" aria-labelledby="setup-title">
+        <button class="back-button" data-nav="home">← ACCUEIL</button>
+        <div class="setup-layout">
+          <div class="setup-intro panel">
+            <span class="mode-icon giant" id="setup-icon">◈</span>
+            <p class="eyebrow" id="setup-kicker">CONFIGURATION</p>
+            <h1 id="setup-title">Arcade</h1>
+            <p id="setup-description">Configure la partie avant d’entrer dans l’ombre.</p>
+            <div class="setup-preview" id="setup-preview"></div>
+          </div>
+          <form class="setup-form panel" id="setup-form">
+            <div class="form-section">
+              <h2>Paramètres de partie</h2>
+              <label class="field">
+                <span>Catégorie</span>
+                <select id="setup-category"></select>
+              </label>
+              <label class="field" id="difficulty-field">
+                <span>Difficulté</span>
+                <select id="setup-difficulty">
+                  <option value="easy">Facile — 15 s, silhouettes nettes</option>
+                  <option value="normal" selected>Normal — 12 s, quelques pièges</option>
+                  <option value="hard">Difficile — 9 s, effets visuels</option>
+                  <option value="expert">Expert — 7 s, aucun cadeau</option>
+                </select>
+              </label>
+              <label class="field" id="amount-field">
+                <span id="amount-label">Nombre de manches</span>
+                <select id="setup-amount"></select>
+              </label>
+            </div>
+            <div class="form-section hidden" id="players-section">
+              <h2>Joueurs et touches de buzz</h2>
+              <label class="field"><span>Nombre de joueurs</span>
+                <select id="player-count"><option value="2">2 joueurs</option><option value="3">3 joueurs</option><option value="4">4 joueurs</option></select>
+              </label>
+              <div class="player-fields" id="player-fields"></div>
+            </div>
+            <div class="setup-rules" id="setup-rules"></div>
+            <button class="btn btn-primary btn-xl full" type="submit">LANCER LA PARTIE <span>▶</span></button>
+          </form>
+        </div>
+      </section>
+
+      <section class="screen game-screen" id="game-screen" aria-labelledby="game-question-label">
+        <div class="game-hud">
+          <div class="hud-block"><span id="hud-mode">ARCADE</span><strong id="hud-round">01 / 10</strong></div>
+          <div class="hud-center">
+            <span class="timer-value" id="timer-value">12.0</span>
+            <div class="timer-track"><span id="timer-fill"></span></div>
+          </div>
+          <div class="hud-block right"><span>SCORE</span><strong id="hud-score">000000</strong></div>
+        </div>
+
+        <div class="game-meta-row">
+          <div class="combo-pill" id="combo-pill">COMBO ×1</div>
+          <div class="life-row" id="life-row" aria-label="Vies restantes"></div>
+          <div class="hint-reveal" id="hint-reveal" aria-live="polite"></div>
+        </div>
+
+        <div class="duel-scoreboard hidden" id="duel-scoreboard"></div>
+
+        <div class="play-layout">
+          <section class="silhouette-panel panel" aria-labelledby="game-question-label">
+            <div class="stage-topline">
+              <span id="question-category">CATÉGORIE</span>
+              <span id="question-difficulty">★</span>
+            </div>
+            <h1 class="sr-only" id="game-question-label">Quelle est cette silhouette ?</h1>
+            <div class="art-stage silhouette" id="art-stage">
+              <div class="stage-glow"></div>
+              <div class="art-holder" id="art-holder"></div>
+              <div class="fog-mask" aria-hidden="true"></div>
+              <span class="stage-scan" aria-hidden="true"></span>
+            </div>
+            <div class="duel-prompt hidden" id="duel-prompt" aria-live="assertive"></div>
+          </section>
+
+          <section class="answer-panel">
+            <div class="question-header">
+              <p class="eyebrow">QUI SE CACHE DANS L’OMBRE ?</p>
+              <h2 id="question-title">Choisis une réponse</h2>
+            </div>
+            <div class="answer-grid" id="answer-grid"></div>
+            <div class="round-feedback hidden" id="round-feedback" aria-live="assertive">
+              <span class="feedback-icon" id="feedback-icon">✓</span>
+              <div><strong id="feedback-title">Bonne réponse</strong><p id="feedback-text"></p></div>
+              <span class="feedback-points" id="feedback-points">+1 000</span>
+            </div>
+            <div class="game-actions">
+              <button class="btn btn-ghost" id="hint-button">💡 INDICE <span id="hint-count">3</span></button>
+              <button class="btn btn-ghost" id="skip-button">PASSER −250</button>
+              <button class="icon-button large" id="pause-button" aria-label="Mettre en pause">Ⅱ</button>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section class="screen" id="result-screen" aria-labelledby="result-title">
+        <div class="result-card panel">
+          <div class="rank-emblem" id="result-rank">S</div>
+          <p class="eyebrow" id="result-kicker">PARTIE TERMINÉE</p>
+          <h1 id="result-title">Maître des ombres</h1>
+          <p id="result-subtitle">Tu as reconnu presque toutes les silhouettes.</p>
+          <div class="result-score"><span>SCORE FINAL</span><strong id="result-score">0</strong><em id="result-best">NOUVEAU RECORD</em></div>
+          <div class="result-stats" id="result-stats"></div>
+          <div class="duel-results hidden" id="duel-results"></div>
+          <div class="result-actions">
+            <button class="btn btn-primary" id="replay-button">REJOUER</button>
+            <button class="btn btn-ghost" data-nav="collection">COLLECTION</button>
+            <button class="btn btn-ghost" data-nav="home">ACCUEIL</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen" id="collection-screen" aria-labelledby="collection-title">
+        <button class="back-button" data-nav="home">← ACCUEIL</button>
+        <div class="page-heading">
+          <div><p class="eyebrow">MUSÉE DES OMBRES</p><h1 id="collection-title">Collection</h1><p>Chaque bonne réponse révèle sa fiche en couleur.</p></div>
+          <div class="collection-progress"><strong id="collection-progress-value">0 / 0</strong><div><span id="collection-progress-fill"></span></div></div>
+        </div>
+        <div class="collection-toolbar panel">
+          <label class="search-field"><span>⌕</span><input id="collection-search" type="search" placeholder="Rechercher une silhouette…"></label>
+          <select id="collection-filter" aria-label="Filtrer la collection"></select>
+          <select id="collection-sort" aria-label="Trier la collection"><option value="unlock">Débloquées d’abord</option><option value="name">Nom A–Z</option><option value="difficulty">Difficulté</option></select>
+        </div>
+        <div class="collection-grid" id="collection-grid"></div>
+      </section>
+
+      <section class="screen" id="stats-screen" aria-labelledby="stats-title">
+        <button class="back-button" data-nav="home">← ACCUEIL</button>
+        <div class="page-heading"><div><p class="eyebrow">TABLEAU DE CHASSE</p><h1 id="stats-title">Statistiques</h1><p>Ta progression dans toutes les épreuves.</p></div></div>
+        <div class="stats-grid" id="stats-grid"></div>
+        <div class="panel stats-detail"><h2>Records par mode</h2><div id="mode-records"></div></div>
+        <button class="text-button danger" id="reset-profile">Réinitialiser toutes les données locales</button>
+      </section>
+
+      <section class="screen" id="settings-screen" aria-labelledby="settings-title">
+        <button class="back-button" data-nav="home">← ACCUEIL</button>
+        <div class="page-heading"><div><p class="eyebrow">PERSONNALISATION</p><h1 id="settings-title">Options</h1><p>Adapte le jeu à ton écran et à ta façon de jouer.</p></div></div>
+        <div class="settings-list panel">
+          <label class="setting-row"><span><strong>Effets sonores</strong><small>Bips, validation, erreur et compte à rebours.</small></span><input type="checkbox" id="setting-sound"></label>
+          <label class="setting-row"><span><strong>Animations</strong><small>Transitions, scanlines et particules de victoire.</small></span><input type="checkbox" id="setting-motion"></label>
+          <label class="setting-row"><span><strong>Contraste renforcé</strong><small>Accentue les panneaux, textes et contours.</small></span><input type="checkbox" id="setting-contrast"></label>
+          <label class="setting-row"><span><strong>Taille de l’interface</strong><small>Agrandit les boutons et les textes.</small></span><select id="setting-scale"><option value="compact">Compacte</option><option value="normal">Normale</option><option value="large">Grande</option></select></label>
+        </div>
+        <div class="panel keyboard-help"><h2>Raccourcis clavier</h2><div><kbd>1</kbd>–<kbd>4</kbd> Répondre <kbd>H</kbd> Indice <kbd>Échap</kbd> Pause <kbd>Entrée</kbd> Continuer</div></div>
+      </section>
+
+      <section class="screen" id="credits-screen" aria-labelledby="credits-title">
+        <button class="back-button" data-nav="home">← ACCUEIL</button>
+        <div class="credits-card panel">
+          <span class="brand-mark giant" aria-hidden="true"><i></i><i></i><i></i></span>
+          <p class="eyebrow">UN JEU DE BLIND TEST VISUEL</p>
+          <h1 id="credits-title">OMBRE<span>//GEEK</span></h1>
+          <p>Jeu web autonome réalisé spécialement pour ce projet. Toutes les illustrations sont des interprétations vectorielles originales dessinées pour le quiz ; aucun fichier de jeu ni asset officiel n’est inclus.</p>
+          <div class="credit-columns"><div><strong>Contenu inclus</strong><span>50+ silhouettes</span><span>6 modes jouables</span><span>Solo et multi local</span><span>Sauvegarde hors ligne</span></div><div><strong>Technologie</strong><span>HTML5 / CSS3 / JavaScript</span><span>SVG vectoriel</span><span>Web Audio</span><span>Progressive Web App</span></div></div>
+          <p class="legal-note">Les noms de personnages, jeux et marques cités appartiennent à leurs ayants droit respectifs. Projet non officiel destiné au divertissement.</p>
+        </div>
+      </section>
+    </main>
+
+    <div class="modal-backdrop hidden" id="pause-modal" role="dialog" aria-modal="true" aria-labelledby="pause-title">
+      <div class="modal panel"><p class="eyebrow">PARTIE SUSPENDUE</p><h2 id="pause-title">Pause</h2><button class="btn btn-primary full" id="resume-button">REPRENDRE</button><button class="btn btn-ghost full" id="quit-button">QUITTER LA PARTIE</button></div>
+    </div>
+
+    <div class="modal-backdrop hidden" id="collection-modal" role="dialog" aria-modal="true" aria-labelledby="collection-modal-title">
+      <div class="modal collection-detail panel"><button class="modal-close" id="collection-modal-close" aria-label="Fermer">×</button><div id="collection-modal-art"></div><div><p class="eyebrow" id="collection-modal-category"></p><h2 id="collection-modal-title"></h2><h3 id="collection-modal-franchise"></h3><p id="collection-modal-fact"></p><div class="detail-tags" id="collection-modal-tags"></div></div></div>
+    </div>
+
+    <div class="countdown-overlay hidden" id="countdown-overlay" aria-live="assertive"><strong id="countdown-value">3</strong><span>PRÉPARE-TOI</span></div>
+    <div id="toast-region" class="toast-region" aria-live="polite"></div>
+    <div id="confetti-layer" aria-hidden="true"></div>
+    <output id="self-test-report" hidden></output>
+  </div>
+
+  <script src="src/data.js"></script>
+  <script src="src/app.js"></script>
+</body>
+</html>
