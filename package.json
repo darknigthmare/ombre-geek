@@ -1,0 +1,14 @@
+{
+  "name": "ombre-geek",
+  "version": "1.1.0",
+  "private": true,
+  "description": "Blind test visuel de silhouettes geek, autonome et installable.",
+  "scripts": {
+    "build": "node scripts/build-portable.mjs",
+    "test": "node --test tests/ombre-geek.test.mjs",
+    "qa": "node scripts/qa.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
